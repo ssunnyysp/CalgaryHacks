@@ -1,0 +1,31 @@
+text,label
+
+"You're an idiot if you believe that",ad_hominem
+"Of course you’d support that policy; you're just a greedy corporate shill.",ad_hominem
+"Why should we listen to a dropout's opinion on economic theory?",ad_hominem
+"You only want that law because you're a typical elitist who hates the working class.",ad_hominem
+"Don't listen to him; he has a history of being a contrarian just for attention.",ad_hominem
+
+"So basically you're saying we should ban everything.",strawman
+"You want to lower the military budget? I didn't realize you wanted our country to be completely defenseless.",strawman
+"My opponent wants to expand healthcare, which basically means he wants the government to control every aspect of your life.",strawman
+"If you support environmental regulations, you clearly want us all to live in caves without electricity.",strawman
+"Oh, so you think we should just let criminals run free without any consequences?",strawman
+
+"If we allow this law, society will collapse.",slippery_slope
+"If we let students use AI for one essay, eventually they'll stop learning how to think and the entire education system will vanish.",slippery_slope
+"First they'll tax soda, then they'll tax sugar, and before you know it, the government will be weighing you every morning.",slippery_slope
+"If we change the dress code, people will start showing up in pajamas, and then total workplace anarchy will follow.",slippery_slope
+"If you give an inch to the protesters, they’ll take a mile and eventually occupy the entire city permanently.",slippery_slope
+
+"Either you're with us or against us.",false_dilemma
+"We either build this pipeline immediately or we face total economic ruin by next year.",false_dilemma
+"You can either choose a career that makes money or a career that makes you happy; you can't have both.",false_dilemma
+"The city must either raise taxes or shut down all the public libraries.",false_dilemma
+"Either we go to war now, or we admit that we are a weak and failing nation.",false_dilemma
+
+"We should evaluate the data carefully.",no_fallacy
+"While I understand your concerns, the statistics from last year suggest a different trend.",no_fallacy
+"I disagree with the proposal because the projected costs exceed our current annual budget.",no_fallacy
+"Could you clarify what you mean by 'systemic' in this specific context?",no_fallacy
+"The research indicates that a moderate increase in temperature affects crop yields in these three ways.",no_fallacy
