@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Luminate Highlighter",
+  "name": "Logic Lens",
   "version": "1.0",
   "description": "Highlight text on any webpage with multiple colors. Save and manage your highlights.",
   "permissions": ["activeTab", "scripting", "storage"],
