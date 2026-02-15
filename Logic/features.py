@@ -1,18 +1,25 @@
-import numpy as np
 import re
+import numpy as np
 
-def normalize_text(text):
+def normalize_text(text: str) -> str:
     text = text.lower()
-    return text
+    text = re.sub(r"http\S+", "", text)
+    text = re.sub(r"[^a-z\s]", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
 
 def add_manual_features(texts):
     features = []
+
     for text in texts:
-        t = normalize_text(text)
         features.append([
-            int("either" in t),
-            int("you are" in t or "you're" in t),
-            int("if " in t and " will " in t),
-            int("so you" in t)
+            int("you" in text),
+            int("always" in text or "never" in text),
+            int("everyone" in text or "nobody" in text),
+            int("if" in text and "then" in text),
+            int("because" in text),
+            len(text.split())
         ])
-    return np.array(features, dtype=np.float64)
+
+    return np.array(features)
