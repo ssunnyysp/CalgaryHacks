@@ -1,19 +1,83 @@
 /* Luminate Highlighter - Content Styles */
 
-.luminate-highlight {
-  background: rgba(245, 230, 66, 0.35) !important;
-  border-bottom: 2px solid #f5e642 !important;
-  border-radius: 2px !important;
-  padding: 1px 0 !important;
-  cursor: pointer !important;
-  box-decoration-break: clone !important;
-  -webkit-box-decoration-break: clone !important;
-  color: inherit !important;
-  font-style: inherit !important;
-  font-weight: inherit !important;
-  text-decoration: none !important;
-}
-
-.luminate-highlight:hover {
-  filter: brightness(1.15);
-}
+/* Important: DO NOT force a fixed highlight color here.
+   Your JS sets per-highlight colors via inline styles. */
+   .luminate-highlight {
+    border-radius: 2px !important;
+    padding: 1px 0 !important;
+    cursor: pointer !important;
+    box-decoration-break: clone !important;
+    -webkit-box-decoration-break: clone !important;
+    color: inherit !important;
+    font-style: inherit !important;
+    font-weight: inherit !important;
+    text-decoration: none !important;
+  }
+  
+  .luminate-highlight:hover {
+    filter: brightness(1.15);
+  }
+  
+  /* Grammarly-ish result card */
+  .luminate-card {
+    position: fixed;
+    right: 16px;
+    top: 120px;
+    width: 300px;
+    z-index: 2147483647;
+    background: #111;
+    color: #f0ece4;
+    border: 1px solid #2e2e2e;
+    border-radius: 12px;
+    padding: 12px 12px 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  
+  .luminate-card-title {
+    font-weight: 800;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  
+  .luminate-card-body {
+    font-size: 12px;
+    line-height: 1.45;
+    color: #ddd;
+  }
+  
+  .luminate-card-kv {
+    margin: 6px 0;
+  }
+  
+  .luminate-card-quote {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #2e2e2e;
+    color: #bdbdbd;
+    font-style: italic;
+    white-space: pre-wrap;
+  }
+  
+  .luminate-card-prompt {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #2e2e2e;
+    background: #151515;
+    border-radius: 10px;
+    color: #cfcfcf;
+    white-space: pre-wrap;
+  }
+  
+  .luminate-card-close {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    border: none;
+    background: transparent;
+    color: #aaa;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .luminate-card-close:hover { color: #fff; }
+  
