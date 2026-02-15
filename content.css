@@ -1,0 +1,19 @@
+/* Luminate Highlighter - Content Styles */
+
+.luminate-highlight {
+  background: rgba(245, 230, 66, 0.35) !important;
+  border-bottom: 2px solid #f5e642 !important;
+  border-radius: 2px !important;
+  padding: 1px 0 !important;
+  cursor: pointer !important;
+  box-decoration-break: clone !important;
+  -webkit-box-decoration-break: clone !important;
+  color: inherit !important;
+  font-style: inherit !important;
+  font-weight: inherit !important;
+  text-decoration: none !important;
+}
+
+.luminate-highlight:hover {
+  filter: brightness(1.15);
+}
