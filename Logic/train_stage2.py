@@ -15,9 +15,6 @@ splits = {
 train_df = pd.read_parquet("hf://datasets/tasksource/logical-fallacy/" + splits['train'])
 dev_df = pd.read_parquet("hf://datasets/tasksource/logical-fallacy/" + splits['dev'])
 
-train_df['label'] = train_df['label'].apply(lambda x: 'fallacy' if x != 'no_fallacy' else 'no_fallacy')
-dev_df['label'] = dev_df['label'].apply(lambda x: 'fallacy' if x != 'no_fallacy' else 'no_fallacy')
-
 X_train = train_df['text']
 y_train = train_df['label']
 X_dev = dev_df['text']
@@ -39,5 +36,5 @@ model.fit(X_train_combined, y_train)
 y_pred = model.predict(X_dev_combined)
 print(classification_report(y_dev, y_pred))
 
-pickle.dump(model, open('stage1_model.pkl', 'wb'))
-pickle.dump(vectorizer, open('stage1_vectorizer.pkl', 'wb'))
+pickle.dump(model, open('stage2_model.pkl', 'wb'))
+pickle.dump(vectorizer, open('stage2_vectorizer.pkl', 'wb'))
