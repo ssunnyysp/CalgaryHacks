@@ -2,7 +2,7 @@
 
 let isEnabled = false;
 
-// Default = Yellow (classic highlight)
+// Default = Yellow
 let currentColor = '#ffdd00';
 let currentColorAlpha = 'rgba(255, 221, 0, 0.35)';
 
@@ -66,6 +66,50 @@ async function notifyBridgeClear(scope) {
   } catch (e) {
     console.warn("Luminate: clear bridge not reachable", e);
   }
+}
+
+// ---------- Model analyze + UI ----------
+async function analyzeHighlight(text) {
+  const r = await fetch("http://localhost:8787/analyze", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text }),
+  });
+  return await r.json();
+}
+
+function showSideCard(highlightId, selectedText, result) {
+  // single global card (simple + clean for hackathon)
+  const existing = document.getElementById("luminate-card");
+  if (existing) existing.remove();
+
+  const card = document.createElement("div");
+  card.id = "luminate-card";
+  card.className = "luminate-card";
+
+  const confidencePct = Math.round((result.confidence || 0) * 100);
+
+  card.innerHTML = `
+    <button class="luminate-card-close" title="Close">×</button>
+    <div class="luminate-card-title">Luminate • Fallacy Check</div>
+
+    <div class="luminate-card-body">
+      <div class="luminate-card-kv"><strong>Type:</strong> ${result.title || result.fallacy}</div>
+      <div class="luminate-card-kv"><strong>Confidence:</strong> ${confidencePct}%</div>
+
+      <div class="luminate-card-kv"><strong>Explanation</strong></div>
+      <div class="luminate-card-quote">${(result.explanation || "").trim()}</div>
+
+      <div class="luminate-card-kv"><strong>Try asking:</strong></div>
+      <div class="luminate-card-prompt">${(result.prompt || "").trim()}</div>
+
+      <div class="luminate-card-kv"><strong>Selected text</strong></div>
+      <div class="luminate-card-quote">“${selectedText.slice(0, 260)}${selectedText.length > 260 ? "…" : ""}”</div>
+    </div>
+  `;
+
+  card.querySelector(".luminate-card-close").onclick = () => card.remove();
+  document.body.appendChild(card);
 }
 
 // Load and restore stored highlights for this page
@@ -137,8 +181,8 @@ function wrapTextNode(textNode, startIdx, text, color, colorAlpha, id) {
   parent.replaceChild(fragment, textNode);
 }
 
-function highlightSelection() {
-  // ✅ guarantee we always have a valid color + alpha before doing anything
+async function highlightSelection() {
+  // guarantee valid color+alpha
   currentColor = normalizeColor(currentColor);
   currentColorAlpha = currentColorAlpha || alphaForColor(currentColor);
 
@@ -147,9 +191,9 @@ function highlightSelection() {
 
   const range = selection.getRangeAt(0);
   const text = selection.toString().trim();
-  if (!text || text.length < 1) return;
+  if (!text) return;
 
-  // Prevent highlighting inside existing highlights
+  // prevent highlighting inside highlights
   const container = range.commonAncestorContainer;
   const parentMark = container.nodeType === 3
     ? container.parentElement?.closest('.luminate-highlight')
@@ -196,21 +240,11 @@ function highlightSelection() {
     range.surroundContents(span);
     selection.removeAllRanges();
 
-    span.animate(
-      [
-        { opacity: 0.3, transform: 'scale(0.98)' },
-        { opacity: 1, transform: 'scale(1)' }
-      ],
-      { duration: 200, easing: 'ease-out' }
-    );
-
-    saveHighlight({ id, text, color: currentColor, colorAlpha: currentColorAlpha });
-
-    // ✅ write/update CSV row
-    sendToLocalBridge(bridgePayload);
+    await saveHighlight({ id, text, color: currentColor, colorAlpha: currentColorAlpha });
+    await sendToLocalBridge(bridgePayload);
 
   } catch (e) {
-    // Fallback if surroundContents fails
+    // fallback
     try {
       const extracted = range.extractContents();
       const span = document.createElement('mark');
@@ -228,10 +262,8 @@ function highlightSelection() {
       range.insertNode(span);
       selection.removeAllRanges();
 
-      saveHighlight({ id, text, color: currentColor, colorAlpha: currentColorAlpha });
-
-      // ✅ write/update CSV row
-      sendToLocalBridge(bridgePayload);
+      await saveHighlight({ id, text, color: currentColor, colorAlpha: currentColorAlpha });
+      await sendToLocalBridge(bridgePayload);
 
       span.addEventListener('dblclick', () => {
         removeHighlightFromPage(id);
@@ -241,8 +273,17 @@ function highlightSelection() {
 
     } catch (e2) {
       console.warn('Luminate: could not highlight selection', e2);
+      return;
     }
   }
+
+  // analyze after saving (non-blocking UI)
+  try {
+    const analysis = await analyzeHighlight(text);
+    if (analysis?.ok) {
+      showSideCard(id, text, analysis.result);
+    }
+  } catch {}
 }
 
 async function saveHighlight(highlight) {
@@ -285,17 +326,13 @@ function clearAllHighlightsFromPage() {
   document.body.normalize();
 }
 
-// Listen for messages from popup
+// Listen for popup messages
 chrome.runtime.onMessage.addListener((message) => {
   switch (message.action) {
     case 'setEnabled': {
       isEnabled = message.enabled;
-
-      // If popup passed a color, use it; otherwise keep ours
       if (message.color) currentColor = normalizeColor(message.color);
-      // ✅ Always compute alpha if missing
       currentColorAlpha = message.colorAlpha || alphaForColor(currentColor);
-
       document.body.style.cursor = isEnabled ? 'text' : '';
       break;
     }
@@ -318,12 +355,11 @@ chrome.runtime.onMessage.addListener((message) => {
   }
 });
 
-// ✅ Register listeners only AFTER init() loads the enabled state
+// Register listeners after init (avoids first-run issues)
 function registerInteractionListenersOnce() {
   if (window.__luminateListenersRegistered) return;
   window.__luminateListenersRegistered = true;
 
-  // Mouseup highlight
   document.addEventListener('mouseup', () => {
     if (!isEnabled) return;
     setTimeout(() => {
@@ -334,12 +370,10 @@ function registerInteractionListenersOnce() {
     }, 10);
   });
 
-  // Ctrl/Cmd+C highlight
   document.addEventListener('keydown', (e) => {
     if (!isEnabled) return;
     const isCopy = (e.metaKey || e.ctrlKey) && (e.key === 'c' || e.key === 'C');
     if (!isCopy) return;
-
     setTimeout(() => {
       const sel = window.getSelection();
       if (sel && sel.toString().trim().length > 0) {
@@ -349,19 +383,17 @@ function registerInteractionListenersOnce() {
   });
 }
 
-// Init: load persisted state
 async function init() {
   const result = await chrome.storage.local.get(['enabled', 'color']);
   isEnabled = !!result.enabled;
 
-  // ✅ normalize stored color (handles old stored colors like #f5e642)
   const storedColor = result.color || DEFAULT_COLOR;
   const normalized = normalizeColor(storedColor);
 
   currentColor = normalized;
   currentColorAlpha = alphaForColor(currentColor);
 
-  // ✅ optional: write back normalized color so storage is clean
+  // write back normalized color if old palette value exists
   if (storedColor !== normalized) {
     chrome.storage.local.set({ color: normalized }).catch(() => {});
   }

@@ -2,6 +2,9 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import json, os, csv
 from datetime import datetime, timezone
 
+from Logic import fallacy_detector  # uses model.pkl + vectorizer.pkl
+
+
 OUT_CSV = os.path.join(os.getcwd(), "highlights.csv")
 FIELDS = ["ts_iso", "ts_ms", "id", "pageKey", "url", "text", "color"]
 
@@ -14,29 +17,23 @@ def ensure_csv_header():
 def load_rows():
     ensure_csv_header()
     with open(OUT_CSV, "r", newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        return list(reader)
+        return list(csv.DictReader(f))
 
 def write_rows(rows):
-    # rows is list[dict] with keys in FIELDS
     with open(OUT_CSV, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=FIELDS)
         writer.writeheader()
         for r in rows:
             writer.writerow({k: r.get(k, "") for k in FIELDS})
 
-def now_iso():
-    return datetime.now(timezone.utc).isoformat()
-
 def ts_to_iso(ts_ms):
     if isinstance(ts_ms, (int, float)):
         return datetime.fromtimestamp(ts_ms / 1000, tz=timezone.utc).isoformat()
-    return now_iso()
+    return datetime.now(timezone.utc).isoformat()
 
 def normalize_row(obj):
     ts_ms = obj.get("ts")
     ts_iso = ts_to_iso(ts_ms)
-
     text = (obj.get("text") or "").replace("\n", " ").replace("\r", " ")
     return {
         "ts_iso": ts_iso,
@@ -49,7 +46,6 @@ def normalize_row(obj):
     }
 
 def upsert_highlight(obj):
-    """Insert/replace by id so duplicates don't accumulate."""
     row = normalize_row(obj)
     rows = load_rows()
     rows = [r for r in rows if r.get("id") != row["id"]]
@@ -59,8 +55,7 @@ def upsert_highlight(obj):
 
 def delete_by_id(del_id):
     rows = load_rows()
-    new_rows = [r for r in rows if r.get("id") != del_id]
-    write_rows(new_rows)
+    write_rows([r for r in rows if r.get("id") != del_id])
 
 def clear_scope(scope, pageKey=None):
     if scope == "all":
@@ -68,15 +63,9 @@ def clear_scope(scope, pageKey=None):
         return
     if scope == "page" and pageKey:
         rows = load_rows()
-        new_rows = [r for r in rows if r.get("pageKey") != pageKey]
-        write_rows(new_rows)
+        write_rows([r for r in rows if r.get("pageKey") != pageKey])
 
 def sync_from_storage(payload):
-    """
-    payload expected:
-      { highlights: { pageKey: [ {id,text,color,url,pageKey,ts}, ... ], ... } }
-    This rewrites CSV as current snapshot.
-    """
     highlights = payload.get("highlights") or {}
     rows = []
     for pageKey, arr in highlights.items():
@@ -85,7 +74,6 @@ def sync_from_storage(payload):
         for h in arr:
             if not isinstance(h, dict):
                 continue
-            # ensure pageKey/url are present if not included
             h = dict(h)
             h.setdefault("pageKey", pageKey)
             rows.append(normalize_row(h))
@@ -106,74 +94,70 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         length = int(self.headers.get("Content-Length", "0"))
         body = self.rfile.read(length).decode("utf-8") if length > 0 else "{}"
-
         try:
             obj = json.loads(body) if body else {}
         except Exception:
             obj = {}
 
-        # --- Add/Update highlight ---
+        # --- Add/Update highlight (CSV snapshot row by id) ---
         if self.path == "/highlight":
-            try:
-                row = upsert_highlight(obj)
-                self.send_response(200)
+            row = upsert_highlight(obj)
+            self.send_response(200)
+            self._cors()
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"ok": True, "row": row}, ensure_ascii=False).encode("utf-8"))
+            return
+
+        # --- Analyze with trained model ---
+        if self.path == "/analyze":
+            text = (obj.get("text") or "").strip()
+            if not text:
+                self.send_response(400)
                 self._cors()
                 self.send_header("Content-Type", "application/json")
                 self.end_headers()
-                self.wfile.write(json.dumps({"ok": True, "row": row}, ensure_ascii=False).encode("utf-8"))
-            except Exception as e:
-                self.send_response(400)
-                self._cors()
-                self.end_headers()
+                self.wfile.write(b'{"ok":false,"error":"empty text"}')
+                return
+
+            result = fallacy_detector.detect_fallacy(text)
+            self.send_response(200)
+            self._cors()
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"ok": True, "result": result}, ensure_ascii=False).encode("utf-8"))
             return
 
-        # --- Delete highlight by id ---
+        # --- Delete by id ---
         if self.path == "/delete":
-            try:
-                del_id = obj.get("id", "")
-                if del_id:
-                    delete_by_id(del_id)
-                self.send_response(200)
-                self._cors()
-                self.send_header("Content-Type", "application/json")
-                self.end_headers()
-                self.wfile.write(b'{"ok": true}')
-            except Exception:
-                self.send_response(400)
-                self._cors()
-                self.end_headers()
+            del_id = obj.get("id", "")
+            if del_id:
+                delete_by_id(del_id)
+            self.send_response(200)
+            self._cors()
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(b'{"ok": true}')
             return
 
-        # --- Clear page/all ---
+        # --- Clear page / all ---
         if self.path == "/clear":
-            try:
-                scope = obj.get("scope")
-                pageKey = obj.get("pageKey")
-                clear_scope(scope, pageKey)
-                self.send_response(200)
-                self._cors()
-                self.send_header("Content-Type", "application/json")
-                self.end_headers()
-                self.wfile.write(b'{"ok": true}')
-            except Exception:
-                self.send_response(400)
-                self._cors()
-                self.end_headers()
+            clear_scope(obj.get("scope"), obj.get("pageKey"))
+            self.send_response(200)
+            self._cors()
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(b'{"ok": true}')
             return
 
-        # --- Sync snapshot from chrome.storage.local ---
+        # --- Sync whole snapshot from storage ---
         if self.path == "/sync":
-            try:
-                count = sync_from_storage(obj)
-                self.send_response(200)
-                self._cors()
-                self.send_header("Content-Type", "application/json")
-                self.end_headers()
-                self.wfile.write(json.dumps({"ok": True, "count": count}).encode("utf-8"))
-            except Exception:
-                self.send_response(400)
-                self._cors()
-                self.end_headers()
+            count = sync_from_storage(obj)
+            self.send_response(200)
+            self._cors()
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"ok": True, "count": count}).encode("utf-8"))
             return
 
         self.send_response(404)
