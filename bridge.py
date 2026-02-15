@@ -1,11 +1,23 @@
+import os
+import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import json, os, csv
+import json, csv
 from datetime import datetime, timezone
 
-from Logic import fallacy_detector  # uses model.pkl + vectorizer.pkl
+# ✅ Make Logic/ importable no matter where you run from
+HERE = os.path.dirname(os.path.abspath(__file__))
+LOGIC_DIR = os.path.join(HERE, "Logic")
+if LOGIC_DIR not in sys.path:
+    sys.path.insert(0, LOGIC_DIR)
+
+import fallacy_detector  # this will now import Logic/fallacy_detector.py
 
 
-OUT_CSV = os.path.join(os.getcwd(), "highlights.csv")
+
+# ✅ FIX: write CSV next to this file (not wherever you happened to run python from)
+_HERE = os.path.dirname(os.path.abspath(__file__))
+OUT_CSV = os.path.join(_HERE, "highlights.csv")
+
 FIELDS = ["ts_iso", "ts_ms", "id", "pageKey", "url", "text", "color"]
 
 def ensure_csv_header():
@@ -99,7 +111,6 @@ class Handler(BaseHTTPRequestHandler):
         except Exception:
             obj = {}
 
-        # --- Add/Update highlight (CSV snapshot row by id) ---
         if self.path == "/highlight":
             row = upsert_highlight(obj)
             self.send_response(200)
@@ -109,7 +120,6 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps({"ok": True, "row": row}, ensure_ascii=False).encode("utf-8"))
             return
 
-        # --- Analyze with trained model ---
         if self.path == "/analyze":
             text = (obj.get("text") or "").strip()
             if not text:
@@ -128,7 +138,6 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps({"ok": True, "result": result}, ensure_ascii=False).encode("utf-8"))
             return
 
-        # --- Delete by id ---
         if self.path == "/delete":
             del_id = obj.get("id", "")
             if del_id:
@@ -140,7 +149,6 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(b'{"ok": true}')
             return
 
-        # --- Clear page / all ---
         if self.path == "/clear":
             clear_scope(obj.get("scope"), obj.get("pageKey"))
             self.send_response(200)
@@ -150,7 +158,6 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(b'{"ok": true}')
             return
 
-        # --- Sync whole snapshot from storage ---
         if self.path == "/sync":
             count = sync_from_storage(obj)
             self.send_response(200)
@@ -163,6 +170,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(404)
         self._cors()
         self.end_headers()
+
 
 if __name__ == "__main__":
     ensure_csv_header()

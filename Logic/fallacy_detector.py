@@ -3,7 +3,10 @@ import pickle
 import numpy as np
 from scipy.sparse import hstack, csr_matrix
 
-# Labels used in your training_data.csv / train.py
+# ✅ CRITICAL: use the exact same functions as training
+from features import normalize_text, add_manual_features
+
+
 FALLACY_INFO = {
     "ad_hominem": {
         "title": "Ad Hominem",
@@ -32,41 +35,35 @@ FALLACY_INFO = {
     },
 }
 
-def add_manual_features(texts):
-    # Must match train.py exactly
-    features = []
-    for text in texts:
-        t = (text or "").lower()
-        features.append([
-            int("either" in t),
-            int("you are" in t or "you're" in t),
-            int("if " in t and " will " in t),
-            int("so you" in t),
-        ])
-    return np.array(features, dtype=np.float64)
-
-# Load model + vectorizer once
+# --- Load model + vectorizer from same folder as this file ---
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_MODEL_PATH = os.path.join(_HERE, "model.pkl")
-_VECT_PATH = os.path.join(_HERE, "vectorizer.pkl")
 
-with open(_MODEL_PATH, "rb") as f:
-    model = pickle.load(f)
+def _load(filename):
+    path = os.path.join(_HERE, filename)
+    with open(path, "rb") as f:
+        return pickle.load(f)
 
-with open(_VECT_PATH, "rb") as f:
-    vectorizer = pickle.load(f)
+model = _load("model.pkl")
+vectorizer = _load("vectorizer.pkl")
+print("[fallacy_detector] Single-stage model loaded.")
 
-def detect_fallacy(text: str):
-    """
-    Returns:
-      {
-        "fallacy": <label>,
-        "confidence": <0..1>,
-        "title": <human name>,
-        "explanation": <string>,
-        "prompt": <string>
-      }
-    """
+
+def _get_confidence(model, X):
+    if hasattr(model, "predict_proba"):
+        return float(model.predict_proba(X).max())
+    return 1.0
+
+
+def _build_features(texts):
+    # IMPORTANT: must match train.py:
+    # X = hstack([X_tfidf, csr_matrix(add_manual_features(...))])
+    X_tfidf = vectorizer.transform(texts)
+    X_manual = add_manual_features(texts)
+    X_manual_sparse = csr_matrix(X_manual)
+    return hstack([X_tfidf, X_manual_sparse])
+
+
+def detect_fallacy(text: str) -> dict:
     text = (text or "").strip()
     if not text:
         info = FALLACY_INFO["no_fallacy"]
@@ -76,22 +73,22 @@ def detect_fallacy(text: str):
             "title": info["title"],
             "explanation": info["explanation"],
             "prompt": info["prompt"],
+            "sentence": text,
         }
 
-    X_tfidf = vectorizer.transform([text])
-    manual = add_manual_features([text])
-    manual_sparse = csr_matrix(manual)
-    X_combined = hstack([X_tfidf, manual_sparse])
+    # ✅ match training normalization exactly
+    text_norm = normalize_text(text)
 
-    pred = model.predict(X_combined)[0]
-    # predict_proba may not exist for some models, but yours does (LogReg)
-    proba = float(model.predict_proba(X_combined).max())
+    X = _build_features([text_norm])
+    pred = model.predict(X)[0]
+    conf = _get_confidence(model, X)
 
     info = FALLACY_INFO.get(pred, FALLACY_INFO["no_fallacy"])
     return {
         "fallacy": pred,
-        "confidence": round(proba, 2),
+        "confidence": conf,
         "title": info["title"],
         "explanation": info["explanation"],
         "prompt": info["prompt"],
+        "sentence": text,
     }

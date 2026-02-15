@@ -3,18 +3,18 @@
 let isEnabled = false;
 
 // Default = Yellow
-let currentColor = '#ffdd00';
-let currentColorAlpha = 'rgba(255, 221, 0, 0.35)';
+let currentColor = "#ffdd00";
+let currentColorAlpha = "rgba(255, 221, 0, 0.35)";
 
 // Only PRIMARY colors: Red, Yellow, Blue
 const COLOR_MAP = {
-  '#ff0000': 'rgba(255, 0, 0, 0.35)',     // Red
-  '#ffdd00': 'rgba(255, 221, 0, 0.35)',   // Yellow
-  '#0000ff': 'rgba(0, 0, 255, 0.35)'      // Blue
+  "#ff0000": "rgba(255, 0, 0, 0.35)",     // Red
+  "#ffdd00": "rgba(255, 221, 0, 0.35)",   // Yellow
+  "#0000ff": "rgba(0, 0, 255, 0.35)"      // Blue
 };
 
-const DEFAULT_COLOR = '#ffdd00';
-const DEFAULT_ALPHA = 'rgba(255, 221, 0, 0.35)';
+const DEFAULT_COLOR = "#ffdd00";
+const DEFAULT_ALPHA = "rgba(255, 221, 0, 0.35)";
 
 function normalizeColor(c) {
   return COLOR_MAP[c] ? c : DEFAULT_COLOR;
@@ -24,62 +24,46 @@ function alphaForColor(c) {
 }
 
 function generateId() {
-  return 'lum_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+  return "lum_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7);
 }
 
 function getPageKey() {
   return window.location.origin + window.location.pathname;
 }
 
-// ---------- Bridge helpers ----------
+// ---------- Background bridge helpers ----------
+function bgMessage(message) {
+  return new Promise((resolve) => {
+    try {
+      chrome.runtime.sendMessage(message, (resp) => resolve(resp || { ok: false }));
+    } catch (e) {
+      resolve({ ok: false, error: String(e?.message || e) });
+    }
+  });
+}
+
 async function sendToLocalBridge(payload) {
-  try {
-    await fetch("http://localhost:8787/highlight", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-  } catch (e) {
-    console.warn("Luminate: bridge not reachable", e);
-  }
+  // no silent fail; just return ok=false if bridge down
+  return await bgMessage({ action: "bridgeHighlight", payload });
 }
 
 async function notifyBridgeDelete(id) {
-  try {
-    await fetch("http://localhost:8787/delete", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-  } catch (e) {
-    console.warn("Luminate: delete bridge not reachable", e);
-  }
+  return await bgMessage({ action: "bridgeDelete", id });
 }
 
 async function notifyBridgeClear(scope) {
-  try {
-    await fetch("http://localhost:8787/clear", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ scope, pageKey: getPageKey() }),
-    });
-  } catch (e) {
-    console.warn("Luminate: clear bridge not reachable", e);
-  }
+  return await bgMessage({
+    action: "bridgeClear",
+    payload: { scope, pageKey: getPageKey() }
+  });
 }
 
 // ---------- Model analyze + UI ----------
 async function analyzeHighlight(text) {
-  const r = await fetch("http://localhost:8787/analyze", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text }),
-  });
-  return await r.json();
+  return await bgMessage({ action: "analyze", text });
 }
 
 function showSideCard(highlightId, selectedText, result) {
-  // single global card (simple + clean for hackathon)
   const existing = document.getElementById("luminate-card");
   if (existing) existing.remove();
 
@@ -87,21 +71,21 @@ function showSideCard(highlightId, selectedText, result) {
   card.id = "luminate-card";
   card.className = "luminate-card";
 
-  const confidencePct = Math.round((result.confidence || 0) * 100);
+  const confidencePct = Math.round(((result?.confidence ?? 0) * 100));
 
   card.innerHTML = `
     <button class="luminate-card-close" title="Close">×</button>
     <div class="luminate-card-title">Luminate • Fallacy Check</div>
 
     <div class="luminate-card-body">
-      <div class="luminate-card-kv"><strong>Type:</strong> ${result.title || result.fallacy}</div>
-      <div class="luminate-card-kv"><strong>Confidence:</strong> ${confidencePct}%</div>
+      <div class="luminate-card-kv"><strong>Type:</strong> ${result?.title || result?.fallacy || "Unknown"}</div>
+      <div class="luminate-card-kv"><strong>Confidence:</strong> ${Number.isFinite(confidencePct) ? confidencePct : 0}%</div>
 
       <div class="luminate-card-kv"><strong>Explanation</strong></div>
-      <div class="luminate-card-quote">${(result.explanation || "").trim()}</div>
+      <div class="luminate-card-quote">${(result?.explanation || "").trim() || "—"}</div>
 
       <div class="luminate-card-kv"><strong>Try asking:</strong></div>
-      <div class="luminate-card-prompt">${(result.prompt || "").trim()}</div>
+      <div class="luminate-card-prompt">${(result?.prompt || "").trim() || "—"}</div>
 
       <div class="luminate-card-kv"><strong>Selected text</strong></div>
       <div class="luminate-card-quote">“${selectedText.slice(0, 260)}${selectedText.length > 260 ? "…" : ""}”</div>
@@ -114,13 +98,13 @@ function showSideCard(highlightId, selectedText, result) {
 
 // Load and restore stored highlights for this page
 async function restoreHighlights() {
-  const result = await chrome.storage.local.get('highlights');
+  const result = await chrome.storage.local.get("highlights");
   const allHighlights = result.highlights || {};
   const pageKey = getPageKey();
   const pageHighlights = allHighlights[pageKey] || [];
   if (pageHighlights.length === 0) return;
 
-  pageHighlights.forEach(h => {
+  pageHighlights.forEach((h) => {
     try { applyHighlightById(h); } catch (e) {}
   });
 }
@@ -130,7 +114,7 @@ function applyHighlightById(highlight) {
   let node;
   while ((node = walker.nextNode())) {
     const idx = node.nodeValue.indexOf(highlight.text);
-    if (idx !== -1 && !node.parentElement.dataset.luminateId) {
+    if (idx !== -1 && !node.parentElement?.dataset?.luminateId) {
       wrapTextNode(node, idx, highlight.text, highlight.color, highlight.colorAlpha, highlight.id);
       break;
     }
@@ -139,7 +123,7 @@ function applyHighlightById(highlight) {
 
 function wrapTextNode(textNode, startIdx, text, color, colorAlpha, id) {
   const parent = textNode.parentNode;
-  if (!parent || parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE') return;
+  if (!parent || parent.tagName === "SCRIPT" || parent.tagName === "STYLE") return;
 
   const safeColor = normalizeColor(color || DEFAULT_COLOR);
   const safeAlpha = colorAlpha || alphaForColor(safeColor);
@@ -147,8 +131,8 @@ function wrapTextNode(textNode, startIdx, text, color, colorAlpha, id) {
   const before = textNode.nodeValue.slice(0, startIdx);
   const after = textNode.nodeValue.slice(startIdx + text.length);
 
-  const span = document.createElement('mark');
-  span.className = 'luminate-highlight';
+  const span = document.createElement("mark");
+  span.className = "luminate-highlight";
   span.dataset.luminateId = id;
   span.dataset.color = safeColor;
   span.style.cssText = `
@@ -161,13 +145,13 @@ function wrapTextNode(textNode, startIdx, text, color, colorAlpha, id) {
   `;
   span.textContent = text;
 
-  span.addEventListener('mouseenter', () => {
-    span.style.background = safeAlpha.replace('0.35', '0.55') + ' !important';
+  span.addEventListener("mouseenter", () => {
+    span.style.background = safeAlpha.replace("0.35", "0.55") + " !important";
   });
-  span.addEventListener('mouseleave', () => {
-    span.style.background = safeAlpha + ' !important';
+  span.addEventListener("mouseleave", () => {
+    span.style.background = safeAlpha + " !important";
   });
-  span.addEventListener('dblclick', () => {
+  span.addEventListener("dblclick", () => {
     removeHighlightFromPage(id);
     removeHighlightFromStorage(id);
     notifyBridgeDelete(id);
@@ -182,7 +166,6 @@ function wrapTextNode(textNode, startIdx, text, color, colorAlpha, id) {
 }
 
 async function highlightSelection() {
-  // guarantee valid color+alpha
   currentColor = normalizeColor(currentColor);
   currentColorAlpha = currentColorAlpha || alphaForColor(currentColor);
 
@@ -195,9 +178,10 @@ async function highlightSelection() {
 
   // prevent highlighting inside highlights
   const container = range.commonAncestorContainer;
-  const parentMark = container.nodeType === 3
-    ? container.parentElement?.closest('.luminate-highlight')
-    : container?.closest?.('.luminate-highlight');
+  const parentMark =
+    container.nodeType === 3
+      ? container.parentElement?.closest(".luminate-highlight")
+      : container?.closest?.(".luminate-highlight");
   if (parentMark) return;
 
   const id = generateId();
@@ -208,12 +192,12 @@ async function highlightSelection() {
     color: currentColor,
     url: window.location.href,
     pageKey: getPageKey(),
-    ts: Date.now()
+    ts: Date.now(),
   };
 
   try {
-    const span = document.createElement('mark');
-    span.className = 'luminate-highlight';
+    const span = document.createElement("mark");
+    span.className = "luminate-highlight";
     span.dataset.luminateId = id;
     span.dataset.color = currentColor;
     span.style.cssText = `
@@ -225,13 +209,13 @@ async function highlightSelection() {
       transition: background 0.2s !important;
     `;
 
-    span.addEventListener('mouseenter', () => {
-      span.style.background = currentColorAlpha.replace('0.35', '0.55') + ' !important';
+    span.addEventListener("mouseenter", () => {
+      span.style.background = currentColorAlpha.replace("0.35", "0.55") + " !important";
     });
-    span.addEventListener('mouseleave', () => {
-      span.style.background = currentColorAlpha + ' !important';
+    span.addEventListener("mouseleave", () => {
+      span.style.background = currentColorAlpha + " !important";
     });
-    span.addEventListener('dblclick', () => {
+    span.addEventListener("dblclick", () => {
       removeHighlightFromPage(id);
       removeHighlightFromStorage(id);
       notifyBridgeDelete(id);
@@ -247,8 +231,8 @@ async function highlightSelection() {
     // fallback
     try {
       const extracted = range.extractContents();
-      const span = document.createElement('mark');
-      span.className = 'luminate-highlight';
+      const span = document.createElement("mark");
+      span.className = "luminate-highlight";
       span.dataset.luminateId = id;
       span.dataset.color = currentColor;
       span.style.cssText = `
@@ -265,29 +249,38 @@ async function highlightSelection() {
       await saveHighlight({ id, text, color: currentColor, colorAlpha: currentColorAlpha });
       await sendToLocalBridge(bridgePayload);
 
-      span.addEventListener('dblclick', () => {
+      span.addEventListener("dblclick", () => {
         removeHighlightFromPage(id);
         removeHighlightFromStorage(id);
         notifyBridgeDelete(id);
       });
 
     } catch (e2) {
-      console.warn('Luminate: could not highlight selection', e2);
+      console.warn("Luminate: could not highlight selection", e2);
       return;
     }
   }
 
-  // analyze after saving (non-blocking UI)
-  try {
-    const analysis = await analyzeHighlight(text);
-    if (analysis?.ok) {
-      showSideCard(id, text, analysis.result);
-    }
-  } catch {}
+  // analyze after saving
+  const analysis = await analyzeHighlight(text);
+
+  if (analysis?.ok) {
+    showSideCard(id, text, analysis.result);
+  } else {
+    // ✅ Show a useful card if bridge is down
+    showSideCard(id, text, {
+      title: "Analysis unavailable",
+      fallacy: "Bridge not running",
+      confidence: 0,
+      explanation:
+        "Your highlight saved, but the local analysis server (http://localhost:8787) didn’t respond. Start bridge.py and refresh the page.",
+      prompt: "Try: Is the bridge server running? Can I reach http://localhost:8787/analyze ?"
+    });
+  }
 }
 
 async function saveHighlight(highlight) {
-  const result = await chrome.storage.local.get('highlights');
+  const result = await chrome.storage.local.get("highlights");
   const allHighlights = result.highlights || {};
   const pageKey = getPageKey();
 
@@ -307,18 +300,18 @@ function removeHighlightFromPage(id) {
 }
 
 async function removeHighlightFromStorage(id) {
-  const result = await chrome.storage.local.get('highlights');
+  const result = await chrome.storage.local.get("highlights");
   const allHighlights = result.highlights || {};
   const pageKey = getPageKey();
 
   if (allHighlights[pageKey]) {
-    allHighlights[pageKey] = allHighlights[pageKey].filter(h => h.id !== id);
+    allHighlights[pageKey] = allHighlights[pageKey].filter((h) => h.id !== id);
     await chrome.storage.local.set({ highlights: allHighlights });
   }
 }
 
 function clearAllHighlightsFromPage() {
-  document.querySelectorAll('.luminate-highlight').forEach(el => {
+  document.querySelectorAll(".luminate-highlight").forEach((el) => {
     const parent = el.parentNode;
     while (el.firstChild) parent.insertBefore(el.firstChild, el);
     parent.removeChild(el);
@@ -329,26 +322,26 @@ function clearAllHighlightsFromPage() {
 // Listen for popup messages
 chrome.runtime.onMessage.addListener((message) => {
   switch (message.action) {
-    case 'setEnabled': {
+    case "setEnabled": {
       isEnabled = message.enabled;
       if (message.color) currentColor = normalizeColor(message.color);
       currentColorAlpha = message.colorAlpha || alphaForColor(currentColor);
-      document.body.style.cursor = isEnabled ? 'text' : '';
+      document.body.style.cursor = isEnabled ? "text" : "";
       break;
     }
 
-    case 'setColor': {
+    case "setColor": {
       currentColor = normalizeColor(message.color);
       currentColorAlpha = message.colorAlpha || alphaForColor(currentColor);
       break;
     }
 
-    case 'clearPage':
+    case "clearPage":
       clearAllHighlightsFromPage();
       notifyBridgeClear("page");
       break;
 
-    case 'removeHighlight':
+    case "removeHighlight":
       removeHighlightFromPage(message.id);
       notifyBridgeDelete(message.id);
       break;
@@ -360,7 +353,7 @@ function registerInteractionListenersOnce() {
   if (window.__luminateListenersRegistered) return;
   window.__luminateListenersRegistered = true;
 
-  document.addEventListener('mouseup', () => {
+  document.addEventListener("mouseup", () => {
     if (!isEnabled) return;
     setTimeout(() => {
       const sel = window.getSelection();
@@ -370,9 +363,9 @@ function registerInteractionListenersOnce() {
     }, 10);
   });
 
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener("keydown", (e) => {
     if (!isEnabled) return;
-    const isCopy = (e.metaKey || e.ctrlKey) && (e.key === 'c' || e.key === 'C');
+    const isCopy = (e.metaKey || e.ctrlKey) && (e.key === "c" || e.key === "C");
     if (!isCopy) return;
     setTimeout(() => {
       const sel = window.getSelection();
@@ -384,7 +377,7 @@ function registerInteractionListenersOnce() {
 }
 
 async function init() {
-  const result = await chrome.storage.local.get(['enabled', 'color']);
+  const result = await chrome.storage.local.get(["enabled", "color"]);
   isEnabled = !!result.enabled;
 
   const storedColor = result.color || DEFAULT_COLOR;
@@ -398,7 +391,7 @@ async function init() {
     chrome.storage.local.set({ color: normalized }).catch(() => {});
   }
 
-  if (isEnabled) document.body.style.cursor = 'text';
+  if (isEnabled) document.body.style.cursor = "text";
 
   registerInteractionListenersOnce();
   restoreHighlights();

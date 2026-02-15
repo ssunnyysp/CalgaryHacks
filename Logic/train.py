@@ -1,51 +1,47 @@
 import pandas as pd
-import numpy as np
+import pickle
+from scipy.sparse import hstack, csr_matrix
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from scipy.sparse import hstack, csr_matrix
-import pickle
 
-def add_manual_features(texts):
-    features = []
-    for text in texts:
-        t = text.lower()
-        features.append([
-            int("either" in t),
-            int("you are" in t or "you're" in t),
-            int("if " in t and " will " in t),
-            int("so you" in t)
-        ])
-    return np.array(features, dtype=np.float64)
+from features import normalize_text, add_manual_features
 
+# Load data
 data = pd.read_csv("training_data.csv")
-X = data["text"]
+
+X_text = data["text"].apply(normalize_text)
 y = data["label"]
 
-vectorizer = TfidfVectorizer(ngram_range=(1,3), stop_words="english", max_features=10000)
-X_vec = vectorizer.fit_transform(X)
+# TF-IDF
+vectorizer = TfidfVectorizer(
+    ngram_range=(1, 2),
+    stop_words="english",
+    max_features=5000
+)
 
-manual_features = add_manual_features(X)
-manual_features_sparse = csr_matrix(manual_features)
-X_combined = hstack([X_vec, manual_features_sparse])
+X_tfidf = vectorizer.fit_transform(X_text)
 
-X_train, X_test, y_train, y_test = train_test_split(X_combined, y, test_size=0.1, random_state=42)
+# Manual features
+X_manual = add_manual_features(X_text.tolist())
+X_manual_sparse = csr_matrix(X_manual)
 
-model = LogisticRegression(max_iter=2000, class_weight="balanced")
+# Combine
+X = hstack([X_tfidf, X_manual_sparse])
+
+# Train/test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+model = LogisticRegression(max_iter=1000, class_weight="balanced")
 model.fit(X_train, y_train)
 
+# Evaluate
 y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
 
+# Save
 pickle.dump(model, open("model.pkl", "wb"))
 pickle.dump(vectorizer, open("vectorizer.pkl", "wb"))
-
-def detect_fallacy(text):
-    X_tfidf = vectorizer.transform([text])
-    manual = add_manual_features([text])
-    manual_sparse = csr_matrix(manual)
-    X_combined = hstack([X_tfidf, manual_sparse])
-    prediction = model.predict(X_combined)[0]
-    confidence = model.predict_proba(X_combined).max()
-    return {"fallacy": prediction, "confidence": round(float(confidence), 2)}
