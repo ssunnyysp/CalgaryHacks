@@ -50,7 +50,6 @@ text,label
 "You’re a sellout.",ad_hominem
 "You’re just a partisan hack.",ad_hominem
 "You’re clearly just projecting your own insecurities.",ad_hominem
-
 "So basically you're saying we should ban everything.",strawman
 "You want to lower the military budget? I didn't realize you wanted our country to be completely defenseless.",strawman
 "My opponent wants to expand healthcare, which basically means he wants the government to control every aspect of your life.",strawman
@@ -101,7 +100,6 @@ text,label
 "So you’re saying that the truth doesn't matter as long as people are happy?",strawman
 "You want to reform the tax code? So you want to destroy the middle class?",strawman
 "If you think the game was boring, you obviously don't understand the rules.",strawman
-
 "If we allow this law, society will collapse.",slippery_slope
 "If we let students use AI for one essay, eventually they'll stop learning how to think and the entire education system will vanish.",slippery_slope
 "First they'll tax soda, then they'll tax sugar, and before you know it, the government will be weighing you every morning.",slippery_slope
@@ -152,7 +150,6 @@ text,label
 "If we let this one protest happen, there will be a protest every day and the streets will never be clear.",slippery_slope
 "If we use electronic voting, the hackers will pick every president from now until the end of time.",slippery_slope
 "If you let him borrow your car once, he’ll treat it like his own and never give it back.",slippery_slope
-
 "Either you're with us or against us.",false_dilemma
 "We either build this pipeline immediately or we face total economic ruin by next year.",false_dilemma
 "You can either choose a career that makes money or a career that makes you happy; you can't have both.",false_dilemma
@@ -203,7 +200,6 @@ text,label
 "Either we have complete free speech, or we have a North Korean-style regime.",false_dilemma
 "Either you’re a fan of this team, or you’re a hater.",false_dilemma
 "Either we cut taxes now, or the economy will never recover.",false_dilemma
-
 "We should evaluate the data carefully.",no_fallacy
 "While I understand your concerns, the statistics from last year suggest a different trend.",no_fallacy
 "I disagree with the proposal because the projected costs exceed our current annual budget.",no_fallacy
