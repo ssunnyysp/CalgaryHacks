@@ -6,18 +6,17 @@ vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
 def normalize_text(text):
     text = text.lower()
-    text = re.sub(r"[^a-z\s]", "", text)
     return text
 
 def detect_fallacy(text):
-    text = normalize_text(text)
-    X = vectorizer.transform([text])
+    X_tfidf = vectorizer.transform([text])
+    manual = add_manual_features([text])
 
-    prediction = model.predict(X)[0]
-    confidence = model.predict_proba(X).max()
+    from scipy.sparse import hstack
+    X_combined = hstack([X_tfidf, manual])
 
-    if confidence < 0.55 or prediction == "none":
-        return {"fallacy": None, "confidence": confidence}
+    prediction = model.predict(X_combined)[0]
+    confidence = model.predict_proba(X_combined).max()
 
     return {
         "fallacy": prediction,
