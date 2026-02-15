@@ -1,0 +1,619 @@
+text,label
+
+"You're an idiot if you believe that",ad_hominem
+"Of course you’d support that policy; you're just a greedy corporate shill.",ad_hominem
+"Why should we listen to a dropout's opinion on economic theory?",ad_hominem
+"You only want that law because you're a typical elitist who hates the working class.",ad_hominem
+"Don't listen to him; he has a history of being a contrarian just for attention.",ad_hominem
+"You only say that because you’re a bitter person.",ad_hominem
+"Why should we trust a politician who can't even keep his own marriage together?",ad_hominem
+"Your argument is invalid because you’re just a Gen Z kid who doesn't know how the world works.",ad_hominem
+"Typical coming from a liberal/conservative like you.",ad_hominem
+"You’re clearly too emotional to have a rational discussion about this.",ad_hominem
+"I refuse to debate someone with such a poor track record of personal integrity.",ad_hominem
+"Only a loser would think that raising taxes is a good idea.",ad_hominem
+"You’re just a shill for the big pharma companies.",ad_hominem
+"Of course you like this movie; you have the taste of a toddler.",ad_hominem
+"You’re too young to understand the complexities of the housing market.",ad_hominem
+"It’s hard to take your medical advice seriously when you’re clearly out of shape yourself.",ad_hominem
+"You’re just biased because of your upbringing.",ad_hominem
+"Don't listen to her; she’s just looking for her fifteen minutes of fame.",ad_hominem
+"He’s a known liar, so everything he just said about the budget is probably false.",ad_hominem
+"You’re just an ivory tower academic who has never had a real job.",ad_hominem
+"Your opinion on parenting doesn't count since you don't have kids.",ad_hominem
+"You’re just jealous of my success, which is why you’re critiquing my methods.",ad_hominem
+"I bet you read that on some conspiracy theorist's blog.",ad_hominem
+"You’ve always been a contrarian, so I’m ignoring this critique.",ad_hominem
+"Go back to school and learn how to think before you talk to me.",ad_hominem
+"You’re just repeating what the news told you to think.",ad_hominem
+"You’re acting like a crazy person right now.",ad_hominem
+"Anyone who supports this candidate is clearly uneducated.",ad_hominem
+"I don’t debate people who use profile pictures like that.",ad_hominem
+"You’re just a corporate mouthpiece.",ad_hominem
+"It’s funny you’re talking about honesty when you cheated on your taxes.",ad_hominem
+"You're just a pampered city dweller with no clue about rural life.",ad_hominem
+"Your lack of a degree makes this whole point moot.",ad_hominem
+"You’re just trying to sound smart, but it’s not working.",ad_hominem
+"You’re a hypocrite, so why should I listen?",ad_hominem
+"This is coming from a guy who couldn't even finish high school.",ad_hominem
+"You’re just an angry troll with nothing better to do.",ad_hominem
+"Your brain must be fried if you think that's a good plan.",ad_hominem
+"You’re just a sheep following the crowd.",ad_hominem
+"I’m not taking financial advice from someone who lives in their parents' basement.",ad_hominem
+"You’re just a social justice warrior looking for a problem.",ad_hominem
+"You have the IQ of a rock if you believe those stats.",ad_hominem
+"You’re just a religious fanatic.",ad_hominem
+"You’re just an atheist who hates tradition.",ad_hominem
+"You’re a boomer, you wouldn't get it.",ad_hominem
+"You’re a snowflake who gets offended by everything.",ad_hominem
+"You’re just a gatekeeper trying to feel important.",ad_hominem
+"You’re a sellout.",ad_hominem
+"You’re just a partisan hack.",ad_hominem
+"You’re clearly just projecting your own insecurities.",ad_hominem
+
+"So basically you're saying we should ban everything.",strawman
+"You want to lower the military budget? I didn't realize you wanted our country to be completely defenseless.",strawman
+"My opponent wants to expand healthcare, which basically means he wants the government to control every aspect of your life.",strawman
+"If you support environmental regulations, you clearly want us all to live in caves without electricity.",strawman
+"Oh, so you think we should just let criminals run free without any consequences?",strawman
+"So you think we should just let anyone into the country without any checks?",strawman
+"If you want to reduce police funding, you must love seeing crime in the streets.",strawman
+"You don’t like this specific law? I guess you just hate democracy then.",strawman
+"Oh, so you want to ban all cars and make everyone walk everywhere?",strawman
+"You think kids should have less homework? I didn't know you wanted a generation of idiots.",strawman
+"By saying we should regulate AI, you’re basically saying you hate progress.",strawman
+"You’re against the death penalty? So you’d rather keep serial killers in luxury hotels?",strawman
+"If you don't support this tax, you clearly don't care about the poor.",strawman
+"So you're saying that we should just get rid of the military entirely?",strawman
+"You want more bike lanes? I guess you want to destroy every small business on this street.",strawman
+"If you want to protect the forest, you must want all the loggers to starve to death.",strawman
+"So your plan is to just give everyone free money and crash the economy?",strawman
+"You think we should talk to our enemies? So you’re a fan of dictatorships?",strawman
+"If you want to limit gun sales, you clearly want to leave every family defenseless against home invaders.",strawman
+"So you’re saying that the history of our country is 100% evil?",strawman
+"You want to lower the drinking age? So you want every teenager to be a drunk driver?",strawman
+"If you support meat-free Mondays, you basically want to ban farming.",strawman
+"So you're saying that anyone who works hard should have their money stolen?",strawman
+"You think the movie was too long? I guess you just hate art.",strawman
+"If you want to reform social security, you must want old people to live on the streets.",strawman
+"So you think that we should just ignore the law whenever we feel like it?",strawman
+"You’re against this war? I guess you don’t support our troops.",strawman
+"So you want the government to raise our kids for us?",strawman
+"If you think the test was unfair, you obviously just didn't study.",strawman
+"So you want to abolish the police and let purge-style chaos happen?",strawman
+"You think we should spend more on schools? I guess you want to bankrupt the city.",strawman
+"If you like that politician, you must agree with every single bad thing they've ever done.",strawman
+"So you’re saying that women should have more rights than men?",strawman
+"You want to protect the ocean? So you want to ban all fishing and kill the economy?",strawman
+"If you want to change the curriculum, you clearly hate our heritage.",strawman
+"So you think that science is the only thing that matters in life?",strawman
+"You want to regulate the internet? I guess you hate free speech.",strawman
+"If you want to help the homeless, you must want to build a shelter in everyone's backyard.",strawman
+"So you're saying that we should just give up and let the other side win?",strawman
+"You think we should have more public transit? I guess you want to ban private property.",strawman
+"If you support this protest, you must support the looting that happened too.",strawman
+"So you think that parents shouldn't have any say in their children's lives?",strawman
+"You want to lower the speed limit? I guess you want us all to crawl to work.",strawman
+"If you think the CEO is overpaid, you must be a communist who hates success.",strawman
+"So you want to replace all teachers with robots?",strawman
+"You think we should use less plastic? I guess you want to go back to the Stone Age.",strawman
+"If you don't like this song, you must hate the entire genre of music.",strawman
+"So you’re saying that the truth doesn't matter as long as people are happy?",strawman
+"You want to reform the tax code? So you want to destroy the middle class?",strawman
+"If you think the game was boring, you obviously don't understand the rules.",strawman
+
+"If we allow this law, society will collapse.",slippery_slope
+"If we let students use AI for one essay, eventually they'll stop learning how to think and the entire education system will vanish.",slippery_slope
+"First they'll tax soda, then they'll tax sugar, and before you know it, the government will be weighing you every morning.",slippery_slope
+"If we change the dress code, people will start showing up in pajamas, and then total workplace anarchy will follow.",slippery_slope
+"If you give an inch to the protesters, they’ll take a mile and eventually occupy the entire city permanently.",slippery_slope
+"If we let them change the name of this street, they’ll eventually rename the whole city and erase our history.",slippery_slope
+"If you let your kid stay up late once, they’ll never sleep again and eventually drop out of school.",slippery_slope
+"First it’s a tax on carbon, next thing you know they’ll be charging us for the air we breathe.",slippery_slope
+"If we legalize this drug, everyone will become an addict and the workforce will disappear.",slippery_slope
+"If we allow remote work, nobody will ever leave their house and society will become a collection of hermits.",slippery_slope
+"If you give her a promotion now, everyone will expect one, and the company will go bankrupt in a month.",slippery_slope
+"If we let the government regulate social media, they’ll eventually control every thought we have.",slippery_slope
+"If we ban this one book, eventually all libraries will be empty and we’ll live in a dark age.",slippery_slope
+"If you start eating bread again, you’ll gain fifty pounds and end up with diabetes by Christmas.",slippery_slope
+"If we allow facial recognition at airports, it’s only a matter of time before there are cameras in our bathrooms.",slippery_slope
+"If we let the neighbors build a fence, they’ll eventually build a wall and try to take over our yard.",slippery_slope
+"If you don't go to college, you'll never find a job, you'll go broke, and you'll end up homeless.",slippery_slope
+"If we lower the voting age to 16, soon toddlers will be voting and the country will be a playground.",slippery_slope
+"If you let one person skip the line, the whole system of order will fail and people will start rioting.",slippery_slope
+"If we use digital currency, the government will eventually switch off your money if they don't like your politics.",slippery_slope
+"If we let robots deliver food, eventually they’ll take over all jobs and humans will be obsolete.",slippery_slope
+"If you buy a smart fridge, it’ll start spying on you, and then the AI will take over your home.",slippery_slope
+"If we change the traditional recipe, people will stop coming to the restaurant and we'll go out of business.",slippery_slope
+"If we allow self-driving cars, eventually nobody will know how to drive and one glitch will kill everyone.",slippery_slope
+"If you forgive his debt once, he’ll keep asking for money until you’re broke too.",slippery_slope
+"If we put a man on Mars, we’ll eventually abandon Earth and let it rot while the rich live in space.",slippery_slope
+"If we allow people to choose their own working hours, the concept of a 'business day' will die and the economy will stall.",slippery_slope
+"If we stop using cash, the power will go out and we’ll have no way to buy food or survive.",slippery_slope
+"If we let this country join the alliance, we'll eventually be dragged into every war they ever have.",slippery_slope
+"If you start listening to that music, you'll start dressing like that, and then you'll join a gang.",slippery_slope
+"If we allow the park to close early, eventually they’ll turn it into a parking lot.",slippery_slope
+"If we let them build one apartment building, the whole suburb will become a crowded slum.",slippery_slope
+"If you let your dog sleep on the bed, he’ll think he’s the boss and eventually bite you.",slippery_slope
+"If we use AI to write emails, we’ll lose the ability to speak to each other and language will die.",slippery_slope
+"If we allow mandatory vaccines, next they’ll be putting tracking chips in our arms.",slippery_slope
+"If we raise the minimum wage, every burger will cost $50 and nobody will be able to eat out.",slippery_slope
+"If we shorten the work week, productivity will drop, companies will fail, and the Great Depression will return.",slippery_slope
+"If we let the kids use calculators, they’ll never learn basic math and the bridges will all fall down.",slippery_slope
+"If we allow this merger, one company will eventually own everything and competition will be dead.",slippery_slope
+"If we let the city install these lights, they'll eventually use them to track our every move.",slippery_slope
+"If you skip one workout, you'll lose all your muscle and be back at square one by Monday.",slippery_slope
+"If we allow 24-hour stores, nobody will ever sleep and the health of the nation will collapse.",slippery_slope
+"If we let the interns sit in on meetings, eventually they'll be running the board and we'll be fired.",slippery_slope
+"If we ban plastic straws, they’ll ban plastic bags, then plastic bottles, until we’re all using glass for everything.",slippery_slope
+"If we change the anthem, people will lose their sense of patriotism and the country will dissolve.",slippery_slope
+"If we allow a high-speed rail, people will leave the small towns and they'll all become ghost towns.",slippery_slope
+"If we give the employees a free lunch, they'll start asking for free cars and houses.",slippery_slope
+"If we let this one protest happen, there will be a protest every day and the streets will never be clear.",slippery_slope
+"If we use electronic voting, the hackers will pick every president from now until the end of time.",slippery_slope
+"If you let him borrow your car once, he’ll treat it like his own and never give it back.",slippery_slope
+
+"Either you're with us or against us.",false_dilemma
+"We either build this pipeline immediately or we face total economic ruin by next year.",false_dilemma
+"You can either choose a career that makes money or a career that makes you happy; you can't have both.",false_dilemma
+"The city must either raise taxes or shut down all the public libraries.",false_dilemma
+"Either we go to war now, or we admit that we are a weak and failing nation.",false_dilemma
+"Either we drill for oil here, or we stay dependent on foreign energy forever.",false_dilemma
+"You either love your country or you hate it; there is no middle ground.",false_dilemma
+"Either we cut all social programs, or the national debt will destroy us tomorrow.",false_dilemma
+"You either get a high-paying job in tech, or you’ll be poor for the rest of your life.",false_dilemma
+"Either we invest in nuclear power, or we have to go back to using candles.",false_dilemma
+"You can either have a safe neighborhood or a neighborhood with civil liberties.",false_dilemma
+"Either you agree with the manager's decision, or you’re not a team player.",false_dilemma
+"We must either expand the airport or watch the city's economy die.",false_dilemma
+"You either eat meat or you're a radical vegan; there's nothing in between.",false_dilemma
+"Either we pass this bill now, or we admit that the government is completely broken.",false_dilemma
+"You’re either a hard worker or a lazy person; which one is it?",false_dilemma
+"Either we ban the internet for kids, or they will all be ruined by the age of ten.",false_dilemma
+"We either keep the status quo, or we descend into total anarchy.",false_dilemma
+"Either you support the strikers, or you’re a corporate bootlicker.",false_dilemma
+"You can either have a fun life or a responsible life.",false_dilemma
+"Either we go to college right after high school, or we never go at all.",false_dilemma
+"We either buy this house today, or we’ll be renting forever.",false_dilemma
+"Either you’re part of the solution, or you’re part of the problem.",false_dilemma
+"We must either raise the retirement age or the whole system will go bankrupt next year.",false_dilemma
+"Either you like this music, or you have no soul.",false_dilemma
+"We either allow the development, or we admit we don't want any new jobs in this town.",false_dilemma
+"Either you're a morning person, or you're lazy.",false_dilemma
+"Either we lower the standards, or no one will ever pass the exam.",false_dilemma
+"You can either be a leader or a follower.",false_dilemma
+"Either we fix the climate now, or the world ends in ten years.",false_dilemma
+"Either you tell the truth, or you’re a traitor to this family.",false_dilemma
+"We either build the wall, or we lose our national identity.",false_dilemma
+"Either you buy the premium version, or you’re stuck with a useless product.",false_dilemma
+"Either we win this game, or the entire season was a waste of time.",false_dilemma
+"Either you go to the gym every day, or you’re not really trying to be healthy.",false_dilemma
+"We either ban all guns, or we accept that shootings will happen every day.",false_dilemma
+"Either you’re on my side, or you’re my enemy.",false_dilemma
+"Either we have total surveillance, or we have no security at all.",false_dilemma
+"Either you love the city, or you’re a boring person.",false_dilemma
+"We either double the budget, or we cancel the project entirely.",false_dilemma
+"Either you follow the rules exactly, or you're a rebel.",false_dilemma
+"Either we automate everything, or we fall behind our competitors.",false_dilemma
+"Either you're a genius, or you're just lucky.",false_dilemma
+"We either stay together, or my life is over.",false_dilemma
+"Either you support this war, or you’re a coward.",false_dilemma
+"Either we use traditional methods, or we risk everything on unproven tech.",false_dilemma
+"Either you vote for me, or you vote for disaster.",false_dilemma
+"Either we have complete free speech, or we have a North Korean-style regime.",false_dilemma
+"Either you’re a fan of this team, or you’re a hater.",false_dilemma
+"Either we cut taxes now, or the economy will never recover.",false_dilemma
+
+"We should evaluate the data carefully.",no_fallacy
+"While I understand your concerns, the statistics from last year suggest a different trend.",no_fallacy
+"I disagree with the proposal because the projected costs exceed our current annual budget.",no_fallacy
+"Could you clarify what you mean by 'systemic' in this specific context?",no_fallacy
+"The research indicates that a moderate increase in temperature affects crop yields in these three ways.",no_fallacy
+"I think we should look at the long-term effects before making a decision.",no_fallacy
+"The evidence suggests that the new law has reduced crime by 10%.",no_fallacy
+"I understand your point, but I have a different perspective on the matter.",no_fallacy
+"Based on the current budget, we can only afford one of these two projects.",no_fallacy
+"Could you please provide a source for those statistics?",no_fallacy
+"It seems like we agree on the goal, but disagree on the method.",no_fallacy
+"The study was conducted over five years and included ten thousand participants.",no_fallacy
+"I'm not sure if that's true, let me double-check that fact.",no_fallacy
+"While the plan has some flaws, it is an improvement over what we have now.",no_fallacy
+"The weather forecast says there is an 80% chance of rain tomorrow.",no_fallacy
+"I'm voting for this candidate because I agree with her stance on education.",no_fallacy
+"The recipe calls for two cups of flour, but we only have one.",no_fallacy
+"If we increase the temperature, the reaction will happen faster.",no_fallacy
+"We should consider the environmental impact of this new factory.",no_fallacy
+"The traffic is usually heavy at this time of day.",no_fallacy
+"I appreciate your feedback and will take it into account.",no_fallacy
+"The company's profits have increased by 5% this quarter.",no_fallacy
+"We need to find a way to reduce our plastic waste.",no_fallacy
+"The doctor recommended that I get more exercise and eat more vegetables.",no_fallacy
+"I'm sorry, I didn't realize that my comment was offensive.",no_fallacy
+"The book provides a detailed history of the French Revolution.",no_fallacy
+"We should wait for the test results before we draw any conclusions.",no_fallacy
+"The meeting has been rescheduled for next Tuesday at 10 AM.",no_fallacy
+"I'm not an expert on this topic, so I can't give you a definitive answer.",no_fallacy
+"The project was completed on time and under budget.",no_fallacy
+"We should listen to the experts' opinions on this matter.",no_fallacy
+"The data shows a clear correlation between smoking and lung cancer.",no_fallacy
+"I'm going to take a break and come back to this later with a fresh mind.",no_fallacy
+"The train is running ten minutes behind schedule.",no_fallacy
+"We should try to reach a compromise that works for everyone.",no_fallacy
+"The price of gold has fluctuated significantly over the past month.",no_fallacy
+"I agree that we need to do something about the rising cost of living.",no_fallacy
+"The film was well-received by critics and audiences alike.",no_fallacy
+"We should be careful not to overcomplicate the issue.",no_fallacy
+"The new software update includes several bug fixes and performance improvements.",no_fallacy
+"I'm not sure if I agree with your interpretation of the data.",no_fallacy
+"The team worked hard and deserved to win the championship.",no_fallacy
+"We should focus on the most important tasks first.",no_fallacy
+"The study found that there is no significant difference between the two groups.",no_fallacy
+"I'm looking forward to hearing your ideas at the meeting tomorrow.",no_fallacy
+"The sunset was particularly beautiful this evening.",no_fallacy
+"We should make sure that everyone has a chance to speak.",no_fallacy
+"The report outlines the strengths and weaknesses of the current system.",no_fallacy
+"I'm happy to help you with your project if you need any assistance.",no_fallacy
+"The population of the city has grown by 20% over the last decade.",no_fallacy
+"I can't take your argument seriously; you clearly have no idea what you're talking about.",ad_hominem
+"Typical elitist nonsense, as expected from someone like you.",ad_hominem
+"You're clearly too emotional to reason properly.",ad_hominem
+"Of course you'd say that; it fits your usual naive thinking.",ad_hominem
+"You're only arguing this because you're jealous of my success.",ad_hominem
+"Why should we trust your opinion when you clearly lack experience?",ad_hominem
+"You're acting like a spoiled child, so your point is irrelevant.",ad_hominem
+"It's funny how you always twist facts to fit your own bias.",ad_hominem
+"You’re just repeating what everyone else told you.",ad_hominem
+"Your arguments are invalid because you’ve never done this in real life.",ad_hominem
+"Only someone with no critical thinking skills would say that.",ad_hominem
+"You clearly misunderstand basic logic.",ad_hominem
+"Your opinion is worthless since you’re obviously uninformed.",ad_hominem
+"You’re just being defensive because you know you’re wrong.",ad_hominem
+"It’s hard to take advice from someone who’s never faced real challenges.",ad_hominem
+"You’re just a keyboard warrior with no real-world knowledge.",ad_hominem
+"Your argument is ridiculous coming from a novice like you.",ad_hominem
+"You’re clearly biased due to your background.",ad_hominem
+"Your point doesn’t matter because you have no credibility here.",ad_hominem
+"Stop pretending you know what you’re talking about.",ad_hominem
+"If we allow students to use calculators once, soon they won’t be able to do math at all.",slippery_slope
+"If we permit remote work, eventually nobody will come to the office anymore.",slippery_slope
+"First we legalize this drug, next everyone will be addicted and the workforce collapses.",slippery_slope
+"If the city lowers taxes now, services will fail and chaos will follow.",slippery_slope
+"If we skip this safety check, accidents will multiply and the company will go bankrupt.",slippery_slope
+"Allow one exception, and soon everyone will demand special treatment.",slippery_slope
+"If we relax school rules, discipline will disappear and education will fail.",slippery_slope
+"Once we start banning small items, eventually everything will be illegal.",slippery_slope
+"If we let this law pass, the economy will spiral out of control.",slippery_slope
+"If we compromise on this project, deadlines will be missed and the entire plan fails.",slippery_slope
+"Allowing one person to break the rules will encourage everyone else to do it.",slippery_slope
+"If we reduce security for convenience, eventually nothing will be safe.",slippery_slope
+"If we ignore minor infractions, serious crimes will soon follow.",slippery_slope
+"Once we change this policy, everything else will have to change too.",slippery_slope
+"If we permit this small exception, the system will collapse entirely.",slippery_slope
+"If we let him borrow the car once, soon he'll never return it.",slippery_slope
+"If we remove one regulation, soon there will be no oversight left.",slippery_slope
+"First we cut the budget slightly, then the company will fail completely.",slippery_slope
+"If we allow minor errors in this report, trust in the entire project will vanish.",slippery_slope
+"If we start ignoring warnings, disaster will be inevitable.",slippery_slope
+"So you’re saying that we should let everyone break the law?",strawman
+"You basically want to ban all cars and force everyone to walk.",strawman
+"Your argument implies that the government should control every aspect of our lives.",strawman
+"So what you mean is that no one should ever be allowed to have fun.",strawman
+"You’re exaggerating by suggesting we need a complete overhaul.",strawman
+"If I understand correctly, you want to eliminate all taxes completely.",strawman
+"So your plan is to give free money to everyone, which will obviously crash the economy.",strawman
+"Basically, you’re arguing that every law should be ignored.",strawman
+"You’re claiming that if one rule changes, society must collapse.",strawman
+"So you think no one should ever disagree with you?",strawman
+"Your point is basically that education should be banned entirely.",strawman
+"So, in your view, we should just abandon all healthcare regulations.",strawman
+"You’re suggesting that any form of oversight is tyranny.",strawman
+"So what you’re really saying is that all employees should get unlimited vacation?",strawman
+"Basically, you think the police should do nothing ever.",strawman
+"So your argument is that nobody should pay taxes?",strawman
+"Your claim implies that every citizen must vote identically.",strawman
+"So, according to you, all schools should be shut down?",strawman
+"You’re exaggerating to suggest the world will end if we do X.",strawman
+"So what you’re arguing is an extreme version nobody actually proposed.",strawman
+"The sign says 'fine for parking here,' so parking here must be excellent.",ambiguity
+"Nothing is better than eternal happiness, and a slice of pizza is better than nothing, so pizza is better than eternal happiness.",ambiguity
+"I saw her duck, so she must own a waterfowl.",ambiguity
+"The professor said the test would be light, so I only brought a flashlight.",ambiguity
+"He told me to 'address the issue,' so I wrote it a letter.",ambiguity
+"Time flies like an arrow; fruit flies like a banana, so time must enjoy bananas.",ambiguity
+"All banks hold money; the river bank holds water; therefore, the river bank is a financial institution.",ambiguity
+"The judge said the defendant was charged, so he must have an electric personality.",ambiguity
+"She has a right to free speech, so her speech must be free of cost.",ambiguity
+"The company needs more capital punishment for poor performance.",ambiguity
+"The report is due tomorrow, so it must be well-mannered.",ambiguity
+"He’s a man of letters, so his mailbox must be full.",ambiguity
+"The argument is sound, so it must be loud.",ambiguity
+"They said the device is secure, so it must be fastened with a lock and key.",ambiguity
+"The scientist observed the cells, so he must have been in jail.",ambiguity
+"She drew the curtains, so she must be an artist.",ambiguity
+"The board approved the motion, so it must be physically fit.",ambiguity
+"He left his job, so it must have been misplaced.",ambiguity
+"The king’s reign was long, so it must have been raining for years.",ambiguity
+"She can’t bear children, so she must dislike them intensely.",ambiguity
+"The team is on fire, so call the fire department.",ambiguity
+"He broke the record, so now there’s no music.",ambiguity
+"The file is corrupt, so it must be morally compromised.",ambiguity
+"She has a cold personality, so she should see a doctor.",ambiguity
+"He caught the train, so he must have impressive reflexes.",ambiguity
+"The interest is high, so people must be very curious.",ambiguity
+"The solution is trivial, so it must be insignificant.",ambiguity
+"The witness was hostile, so he must have attacked someone.",ambiguity
+"The theory is abstract, so it must be painted strangely.",ambiguity
+"The operation was successful, so the surgeon must have been wealthy.",ambiguity
+"He’s running for office, so he must be late.",ambiguity
+"The market is bearish, so it must be full of wildlife.",ambiguity
+"She has a terminal degree, so her education must be fatal.",ambiguity
+"The student dropped the class, so it must have fallen on the floor.",ambiguity
+"The material is transparent, so it must be honest.",ambiguity
+"He has a vested interest, so he must own a jacket.",ambiguity
+"The case was dismissed, so it must have felt rejected.",ambiguity
+"The patient was stable, so she must have been in a barn.",ambiguity
+"He has a minor in philosophy, so he must be underage.",ambiguity
+"The contract is binding, so it must be tied with rope.",ambiguity
+"The paper is peer-reviewed, so it must have friends.",ambiguity
+"She’s a leading expert, so she must be in front of a parade.",ambiguity
+"The argument has merit, so it must earn a salary.",ambiguity
+"The issue is pressing, so it must be ironing clothes.",ambiguity
+"He’s charged with assault, so he must be electrified and violent.",ambiguity
+"The stock is liquid, so it must be wet.",ambiguity
+"The witness gave testimony, so she must have been on stage performing.",ambiguity
+"The data is raw, so it must be uncooked.",ambiguity
+"He has a bright future, so he’ll need sunglasses.",ambiguity
+"The foundation is solid, so it must be made of stone.",ambiguity
+"Only man is rational; no woman is a man; therefore no woman is rational.",ambiguity
+"Feathers are light; what is light is not dark; therefore feathers are not dark.",ambiguity
+"A feather is light; light cannot be dark; so a feather cannot be dark.",ambiguity
+"The law says all persons have rights; corporations are persons; therefore corporations have human feelings.",ambiguity
+"Nothing is illegal in international waters, so piracy must be perfectly lawful there.",ambiguity
+"The sign says 'employees must wash hands,' so customers don’t need to.",ambiguity
+"He’s an expert witness, so he must have seen everything.",ambiguity
+"The policy covers fire damage, so it must also provide blankets.",ambiguity
+"She has a controlling interest, so she must be very domineering.",ambiguity
+"The book is well-grounded, so it must be buried underground.",ambiguity
+"The statute is clear, so it must be invisible.",ambiguity
+"He holds office, so he must physically carry it.",ambiguity
+"The market corrected itself, so it must have apologized.",ambiguity" 
+"The program crashed, so it must have been driving.",ambiguity
+"He’s in a relationship, so he must be physically inside it.",ambiguity
+"The chair of the committee spoke, so furniture is vocal now.",ambiguity
+"The argument is valid, so it must be morally good.",ambiguity
+"She has a sound mind, so it must make noise.",ambiguity
+"The trial is pending, so it must be hanging from something.",ambiguty
+"The clause is restrictive, so it must be physically tight.",ambiguity
+"The function is increasing, so it must be gaining weight.",ambiguity
+"The file was executed, so it must have been killed.",ambiguity
+"The solution is imaginary, so it must be fictional.",ambiguity
+"The premises are false, so the building must be lying.",ambiguity
+"The conclusion follows, so it must be chasing something.",ambiguity
+"He’s a conservative investor, so he must oppose social change.",ambiguity
+"The church is a body, so it must have arms and legs.",ambiguity
+"She’s a public servant, so she must serve drinks to everyone.",ambiguity
+"The policy is aggressive, so it must shout at people.",ambiguity
+"The equation balances, so it must be standing on a scale.",ambiguity
+"He has a criminal record, so he must have recorded crimes on tape.",ambiguity
+"The network is down, so it must have fallen over.",ambiguity
+"The star is a celebrity, so it must burn hydrogen.",ambiguity
+"The union is strong, so it must lift weights.",ambiguity
+"The patient expired, so the hospital must have had an expiration date.",ambiguity
+"The company went public, so it must have gone outside.",ambiguity
+"The bill was passed, so it must have run quickly.",ambiguity
+"The scientist developed a theory, so she must have raised it like a child.",ambiguity
+"The statement is ambiguous, so it must be confusing on purpose.",ambiguity
+"The license was revoked, so it must have been summoned back magically.",ambiguity
+"He’s a light eater, so he must dine in bright rooms.",ambiguity
+"The party is progressive, so it must be moving forward physically.",ambiguity
+"The argument is circular, so it must roll.",ambiguity
+"The government has branches, so it must grow leaves.",ambiguity
+"The interest accrued, so curiosity must have piled up.",ambiguity
+"The material is elastic, so it must bounce ideas.",ambiguity
+"He’s a free agent, so he must cost nothing.",ambiguity
+"The code is open, so it must be unlocked.",ambiguity
+"The evidence is overwhelming, so it must be submerged.",ambiguity
+"The hypothesis is supported, so it must have a crutch.",ambiguity
+"All stars are luminous; celebrities are stars; therefore celebrities are luminous in a literal astrophysical sense.",ambiguity
+"A right angle is correct; what is correct is morally good; therefore a right angle is morally good.",ambiguity
+"Justice is blind; blind people cannot see; therefore justice cannot see.",ambiguity
+"The medium is the message; television is a medium; therefore television is the message itself in every instance.",ambiguity
+"All models are wrong; fashion models are models; therefore fashion models are wrong.",ambiguity
+"Power corrupts; electricity is power; therefore electricity corrupts.",ambiguity
+"The will was contested, so it must have had strong desires.",ambiguity
+"The bond matured, so it must have grown up.",ambiguity
+"He’s a principal investigator, so he must be a school administrator.",ambiguity
+"The sample was random, so it must have been chaotic.",ambiguity
+"The state is sovereign, so it must rule like a monarch.",ambiguity
+"She has a critical role, so she must criticize constantly.",ambiguity
+"The matrix is singular, so it must be unique and special.",ambiguity
+"The field is charged, so it must be expensive.",ambiguity
+"The firm is solvent, so it must dissolve easily.",ambiguity
+"He’s under oath, so he must be physically beneath it.",ambiguity
+"The cell is cultured, so it must enjoy fine arts.",ambiguity
+"The mass is celebrated, so it must have a party.",ambiguity
+"The party has a platform, so it must be elevated.",ambiguity
+"The bill died in committee, so it must have had a funeral.",ambiguity
+"The line is busy, so it must be working hard.",ambiguity
+"The economy is depressed, so it should see a therapist.",ambiguity
+"He has a volatile temperament, so he must evaporate easily.",ambiguity
+"The strike was called, so someone must have dialed it.",ambiguity
+"The resolution was adopted, so it must have new parents.",ambiguity
+"The object is intentional, so it must have intentions.",ambiguity
+"The subject is arbitrary, so it must rule arbitrarily.",ambiguity
+"The limit does not exist, so nothing exists.",ambiguity
+"The series converges, so it must meet at a physical location.",ambiguity
+"The set is dense, so it must be heavy.",ambiguity
+"The wave collapsed, so the ocean must have shrunk.",ambiguity
+"The vacuum has fluctuations, so it must be noisy.",ambiguity
+"The theory has predictive power, so it must control the future.",ambiguity
+"The function is well-defined, so it must be polite.",ambiguity
+"The state executed the prisoner, so the state must be a person wielding a weapon.",ambiguity
+"The capital is mobile, so the city must move.",ambiguity
+"The appeal was denied, so it must have been rejected emotionally.",ambiguity
+"The judge reserved judgment, so she must be saving it for later in a box.",ambiguity
+"The plane is grounded, so it must be electrically safe.",ambiguity
+"The process is iterative, so it must be annoying.",ambiguity
+"The battery is dead, so we should hold a funeral.",ambiguity
+"The firm has leverage, so it must use a crowbar.",ambiguity
+"The network has nodes, so it must be sick.",ambiguity
+"The heart of the city is beating, so there must be arteries under downtown.",ambiguity
+"The system is robust, so it must be muscular.",ambiguity
+"The constitution lives, so it must breathe.",ambiguity
+"The court is divided, so it must be cut in half physically.",ambiguity
+"The law is silent, so it must be mute.",ambiguity
+"The theory died, so it must have been alive.",ambiguity
+"The party is dead, so no one can attend.",ambiguity
+"He’s a cool customer, so he must have low body temperature.",ambiguity
+"The design is elegant, so it must wear formal clothes.",ambiguity
+"The package is light, so it must glow.",ambiguity
+"The issue is hot, so don’t touch it.",ambiguity
+"The argument is weak, so it needs protein.",ambiguity
+"The computer caught a virus, so it must be sneezing.",ambiguity
+"The witness cracked under pressure, so he must have broken bones.",ambiguity
+"The plan is airtight, so it must contain no oxygen.",ambiguity
+"The proposal is half-baked, so it must be in the oven.",ambiguity
+"The city never sleeps, so everyone must be insomniacs.",ambiguity
+"He’s a big player in the market, so he must be physically large.",ambiguity
+"The argument holds water, so it must be in a bucket.",ambiguity
+"The case is closed, so it must be locked.",ambiguity
+"The market rallied, so it must have waved flags.",ambiguity
+"The candidate is moderate, so she must be lukewarm.",ambiguity
+"The test was hard, so it must be made of stone.",ambiguity
+"The server is down, so it must be sad.",ambiguity
+"The light sentence means the criminal glowed.",ambiguity
+"The economy overheated, so it must be on fire.",ambiguity
+"The file was saved, so it must have been rescued from danger.",ambiguity
+"The class was intense, so it must be brightly colored.",ambiguity
+"The country is divided, so it must have a physical crack down the middle.",ambiguity
+"The software has bugs, so it must attract insects.",ambiguity
+"The leader is outgoing, so she must leave often.",ambiguity
+"The building has character, so it must have a personality.",ambiguity
+"The evidence speaks for itself, so it must have vocal cords.",ambiguity
+"The data is clean, so it must have taken a shower.",ambiguity
+"The project is dead on arrival, so it must have been born.",ambiguity
+"The stock soared, so it must have wings.",ambiguity
+"The rumor spread, so it must be butter.",ambiguity
+"The argument fell apart, so it must be made of bricks.",ambiguity
+"The line of reasoning is thin, so it must be skinny.",ambiguity
+"The team collapsed, so they must have fainted.",ambiguity
+"The market is nervous, so it should meditate.",ambiguity
+"The bill is heavy, so it must weigh a lot.",ambiguity
+"The discussion went nowhere, so it must be lost.",ambiguity
+"The company has deep pockets, so it must wear baggy pants.",ambiguity
+"The proposal is sound, so it must be audible.",ambiguity
+"The contract fell through, so it must have been dropped.",ambiguity
+"The market froze, so it must be below zero degrees.",ambiguity
+"The system is broken, so it must be in pieces.",ambiguity
+"The solution works, so it must have a job.",ambiguity
+"The teacher gave me a hard time, so she must have handed me a rock.",ambiguity
+"The organization has roots, so it must grow underground.",ambiguity
+"The campaign gained momentum, so it must have mass and velocity.",ambiguity
+"The conversation died, so it must have been alive.",ambiguity
+"The market digested the news, so it must have a stomach.",ambiguity
+"The theory stands, so it must have legs.",ambiguity
+"The debate heated up, so it must be on fire.",ambiguity
+"The company is bleeding money, so it needs a bandage.",ambiguity
+"The witness saw the light, so he must have looked at a lamp.",ambiguity
+"The proposal is green, so it must be environmentally friendly and literally colored green.",ambiguity
+"The project is critical, so it must criticize others.",ambiguity
+"The plan is flexible, so it must bend physically.",ambiguity
+"The field is open, so it must have no fences.",ambiguity
+"The network is secure, so it must be guarded by soldiers.",ambiguity
+"The argument is grounded, so it must be electrically safe.",ambiguity
+"The theory is heavy, so it must weigh a lot.",ambiguity
+"The account is outstanding, so it must be unpaid.",ambiguity
+"The interest is compounded, so curiosity must be multiplied.",ambiguity
+"The light reading must be done in bright light.",ambiguity
+"The government is left, so it must have departed.",ambiguity
+"The right wing is correct, so it must be morally right.",ambiguity
+"The party is right, so it must be correct in every claim.",ambiguity
+"The seal was broken, so the animal was injured.",ambiguity
+"The rock band is heavy metal, so their instruments must be made of iron.",ambiguity
+"The bill was tabled, so it must be placed on furniture permanently.",ambiguity
+"The witness was present, so she must have brought a gift.",ambiguity
+"The contract is void, so it must be empty space.",ambiguity
+"The point is sharp, so it must cut.",ambiguity
+"The function is continuous, so it must never stop physically.",ambiguity
+"The subject is depressed, so it must need therapy.",ambiguity
+"The argument is tight, so it must be hard to untie.",ambiguity
+"The case is pending, so it must be hanging.",ambiguity
+"The economy is strong, so it must lift weights.",ambiguity
+"The analysis is deep, so it must be underwater.",ambiguity
+"The device is smart, so it must have consciousness.",ambiguity
+"The issue is settled, so it must live in a town.",ambiguity
+"The class is average, so it must be mediocre in personality.",ambiguity
+"The function is odd, so it must be strange.",ambiguity
+"The solution is trivial, so it must be unimportant in every sense.",ambiguity
+"The committee is split, so it must be physically divided.",ambiguity
+"The object is massive, so it must have great influence.",ambiguity
+"The argument is valid, so it must be true in reality.",ambiguity
+"The statement is sound, so it must be audible.",ambiguity
+"The appeal is strong, so it must lift weights.",ambiguity
+"The motion passed, so it must have moved quickly.",ambiguity
+"The economy recovered, so it must have been ill.",ambiguity
+"The plan failed, so it must have taken an exam.",ambiguity
+"The solution is simple, so it must be unsophisticated.",ambiguity
+"The light beer must glow.",ambiguity
+"The right answer is right-wing.",ambiguity
+"The left side is liberal.",ambiguity
+"The party is conservative, so it must preserve food.",ambiguity
+"The unionized workers are united in marriage.",ambiguity
+"The capital offense must occur in the city.",ambiguity
+"The principal is principal because he has principles.",ambiguity
+"The sound argument must be noisy.",ambiguity
+"The file is current, so it must be electrical.",ambiguity
+"The domain is public, so it must be a park.",ambiguity
+"The draft was strong, so it must be windy.",ambiguity
+"The resolution is clear, so it must be transparent.",ambiguity
+"The right to bear arms must involve grizzly bears.",ambiguity
+"The interest rate is high, so curiosity is elevated.",ambiguity
+"The market is volatile, so it must evaporate.",ambiguity
+"The data is robust, so it must be muscular.",ambiguity
+"The case is strong, so it must lift weights.",ambiguity
+"The subject is key, so it must unlock something.",ambiguity
+"The point is moot, so it must be silent like a cow.",ambiguity
+"The theory is sound, so it must make noise.",ambiguity
+"The policy is liberal, so it must be generous with money personally.",ambiguity
+"The file is open, so it must be unlocked physically.",ambiguity
+"The party is divided, so it must be cut.",ambiguity
+"The sentence is light, so it must shine.",ambiguity
+"The case is cold, so it must be refrigerated.",ambiguity
+"The market is bullish, so it must have horns.",ambiguity
+"The court is high, so it must be elevated.",ambiguity
+"The bill is due, so it must be polite.",ambiguity
+"The bond is strong, so it must bench press a lot.",ambiguity
+"The interest is fixed, so curiosity cannot change.",ambiguity
+"The solution is clear, so it must be transparent liquid.",ambiguity
+"The argument is fluid, so it must be wet.",ambiguity
+"The committee is charged, so it must be electrified.",ambiguity
+"The policy is sound, so it must produce sound waves.",ambiguity
+"The file is dead, so it must have lived.",ambiguity
+"The program is dynamic, so it must be energetic physically.",ambiguity
+"The system is balanced, so it must stand on a scale.",ambiguity
+"The company is incorporated, so it must be physically absorbed.",ambiguity
+"The contract is executed, so it must be killed.",ambiguity
+"The argument is rich, so it must have money.",ambiguity
+"The discussion is heated, so it must raise the temperature.",ambiguity
+"The proposal is light, so it must glow.",ambiguity
+"The device is charged, so it must be accused of a crime.",ambiguity
+"The statement is false, so it must be fake in every sense.",ambiguity
+"The case is open, so it must be unlocked.",ambiguity
+"The organization is tight-knit, so it must be sewn together.",ambiguity
+"The data is sparse, so it must be hungry.",ambiguity
+"The function is bounded, so it must be tied up.",ambiguity
+"The law is binding, so it must use glue.",ambiguity
+"The theory is elegant, so it must attend galas.",ambiguity
+"The company is private, so it must hide secrets personally.",ambiguity
+"The witness is key, so she must unlock the door.",ambiguity
+"The argument is deep, so it must be underwater.",ambiguity
+"The bill is pending, so it must be hanging.",ambiguity
+"The solution is trivial, so it must be worthless.",ambiguity
+"The policy is progressive, so it must move forward physically.",ambiguity
+"The system is open, so it must have no walls.",ambiguity
+"The file is secure, so it must be guarded by soldiers.",ambiguity
+"The market is active, so it must exercise daily.",ambiguity
+"The argument is cold, so it must be frozen solid.",ambiguity
+
+
+

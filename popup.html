@@ -16,19 +16,12 @@
       --text-muted: #7a7a7a;
       --accent: #e8c547;
 
-      --yellow: #f5e642;
-      --pink: #ff6b9d;
-      --mint: #42f5a4;
-      --sky: #42c5f5;
-      --orange: #ff9142;
-      --lavender: #c084fc;
+      --red: #ff0000;
+      --yellow: #ffdd00;
+      --blue: #0000ff;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       width: 300px;
@@ -40,7 +33,6 @@
       overflow: hidden;
     }
 
-    /* Header */
     .header {
       padding: 18px 20px 14px;
       border-bottom: 1px solid var(--border);
@@ -49,21 +41,14 @@
       justify-content: space-between;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
+    .logo { display: flex; align-items: center; gap: 8px; }
     .logo-mark {
-      width: 22px;
-      height: 22px;
+      width: 22px; height: 22px;
       background: var(--accent);
       border-radius: 50%;
       position: relative;
       flex-shrink: 0;
     }
-
     .logo-mark::after {
       content: '';
       position: absolute;
@@ -71,7 +56,6 @@
       background: var(--bg);
       border-radius: 50%;
     }
-
     .logo-text {
       font-family: 'Playfair Display', serif;
       font-size: 17px;
@@ -81,28 +65,22 @@
     }
 
     .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
+      width: 7px; height: 7px; border-radius: 50%;
       background: #3d3d3d;
       transition: background 0.3s;
     }
-
     .status-dot.active {
       background: #42f5a4;
       box-shadow: 0 0 6px #42f5a480;
     }
 
-    /* Highlight Toggle */
     .toggle-section {
       padding: 16px 20px;
       border-bottom: 1px solid var(--border);
     }
 
     .toggle-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 12px;
     }
 
@@ -114,33 +92,20 @@
       color: var(--text-muted);
     }
 
-    .toggle {
-      position: relative;
-      width: 40px;
-      height: 22px;
-    }
-
-    .toggle input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
+    .toggle { position: relative; width: 40px; height: 22px; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
     .toggle-slider {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: var(--surface2);
       border-radius: 11px;
       cursor: pointer;
       transition: background 0.3s;
       border: 1px solid var(--border);
     }
-
     .toggle-slider::before {
       content: '';
       position: absolute;
-      width: 16px;
-      height: 16px;
+      width: 16px; height: 16px;
       left: 2px;
       top: 50%;
       transform: translateY(-50%);
@@ -148,18 +113,15 @@
       border-radius: 50%;
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-
     .toggle input:checked + .toggle-slider {
       background: #1a2e22;
       border-color: #42f5a460;
     }
-
     .toggle input:checked + .toggle-slider::before {
       transform: translateX(18px) translateY(-50%);
       background: #42f5a4;
     }
 
-    /* Color Palette */
     .palette-label {
       font-size: 11px;
       font-weight: 500;
@@ -169,31 +131,18 @@
       margin-bottom: 10px;
     }
 
-    .color-swatches {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
+    .color-swatches { display: flex; gap: 8px; align-items: center; }
 
     .swatch {
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border-radius: 50%;
       cursor: pointer;
       position: relative;
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
       border: 2px solid transparent;
     }
-
-    .swatch:hover {
-      transform: scale(1.15);
-    }
-
-    .swatch.selected {
-      border-color: var(--text);
-      transform: scale(1.1);
-    }
-
+    .swatch:hover { transform: scale(1.15); }
+    .swatch.selected { border-color: var(--text); transform: scale(1.1); }
     .swatch.selected::after {
       content: '✓';
       position: absolute;
@@ -206,14 +155,10 @@
       color: rgba(0,0,0,0.6);
     }
 
+    .swatch-red { background: var(--red); }
     .swatch-yellow { background: var(--yellow); }
-    .swatch-pink { background: var(--pink); }
-    .swatch-mint { background: var(--mint); }
-    .swatch-sky { background: var(--sky); }
-    .swatch-orange { background: var(--orange); }
-    .swatch-lavender { background: var(--lavender); }
+    .swatch-blue { background: var(--blue); }
 
-    /* Actions */
     .actions {
       padding: 14px 20px;
       border-bottom: 1px solid var(--border);
@@ -249,19 +194,13 @@
       border-color: #ff6b6b40;
     }
 
-    /* Stats Bar */
     .stats {
       padding: 10px 20px;
       display: flex;
       gap: 16px;
     }
 
-    .stat {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
+    .stat { display: flex; flex-direction: column; gap: 2px; }
     .stat-num {
       font-family: 'Playfair Display', serif;
       font-size: 20px;
@@ -269,7 +208,6 @@
       color: var(--accent);
       line-height: 1;
     }
-
     .stat-label {
       font-size: 10px;
       letter-spacing: 0.08em;
@@ -277,17 +215,9 @@
       color: var(--text-muted);
     }
 
-    .stat-divider {
-      width: 1px;
-      background: var(--border);
-      margin: 2px 0;
-    }
+    .stat-divider { width: 1px; background: var(--border); margin: 2px 0; }
 
-    /* Highlights List */
-    .highlights-section {
-      padding: 0 20px 16px;
-    }
-
+    .highlights-section { padding: 0 20px 16px; }
     .section-header {
       font-size: 11px;
       font-weight: 500;
@@ -305,18 +235,9 @@
       overflow-y: auto;
     }
 
-    .highlights-list::-webkit-scrollbar {
-      width: 3px;
-    }
-
-    .highlights-list::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .highlights-list::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 2px;
-    }
+    .highlights-list::-webkit-scrollbar { width: 3px; }
+    .highlights-list::-webkit-scrollbar-track { background: transparent; }
+    .highlights-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
     .highlight-item {
       display: flex;
@@ -331,20 +252,7 @@
       position: relative;
       overflow: hidden;
     }
-
-    .highlight-item:hover {
-      background: var(--surface2);
-    }
-
-    .highlight-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      border-radius: 8px 0 0 8px;
-    }
+    .highlight-item:hover { background: var(--surface2); }
 
     .highlight-color-bar {
       position: absolute;
@@ -375,14 +283,8 @@
       opacity: 0;
       transition: opacity 0.15s;
     }
-
-    .highlight-item:hover .highlight-remove {
-      opacity: 1;
-    }
-
-    .highlight-remove:hover {
-      color: #ff6b6b;
-    }
+    .highlight-item:hover .highlight-remove { opacity: 1; }
+    .highlight-remove:hover { color: #ff6b6b; }
 
     .empty-state {
       text-align: center;
@@ -391,14 +293,8 @@
       font-size: 12px;
       line-height: 1.6;
     }
+    .empty-icon { font-size: 24px; margin-bottom: 6px; opacity: 0.5; }
 
-    .empty-icon {
-      font-size: 24px;
-      margin-bottom: 6px;
-      opacity: 0.5;
-    }
-
-    /* Instruction hint */
     .hint {
       padding: 10px 20px 14px;
       font-size: 11px;
@@ -406,11 +302,7 @@
       line-height: 1.6;
       text-align: center;
     }
-
-    .hint strong {
-      color: var(--accent);
-      font-weight: 500;
-    }
+    .hint strong { color: var(--accent); font-weight: 500; }
   </style>
 </head>
 <body>
@@ -434,12 +326,9 @@
 
     <div class="palette-label">Color</div>
     <div class="color-swatches">
-      <div class="swatch swatch-yellow selected" data-color="#f5e642" data-name="yellow"></div>
-      <div class="swatch swatch-pink" data-color="#ff6b9d" data-name="pink"></div>
-      <div class="swatch swatch-mint" data-color="#42f5a4" data-name="mint"></div>
-      <div class="swatch swatch-sky" data-color="#42c5f5" data-name="sky"></div>
-      <div class="swatch swatch-orange" data-color="#ff9142" data-name="orange"></div>
-      <div class="swatch swatch-lavender" data-color="#c084fc" data-name="lavender"></div>
+      <div class="swatch swatch-red" data-color="#ff0000" data-name="red"></div>
+      <div class="swatch swatch-yellow selected" data-color="#ffdd00" data-name="yellow"></div>
+      <div class="swatch swatch-blue" data-color="#0000ff" data-name="blue"></div>
     </div>
   </div>
 
