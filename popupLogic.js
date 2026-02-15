@@ -110,9 +110,33 @@ function renderHighlights(highlights, pageKey) {
     bar.className = 'highlight-color-bar';
     bar.style.background = h.color;
 
+    const content = document.createElement('div');
+    content.className = 'highlight-content';
+    content.style.flex = '1';
+
     const text = document.createElement('span');
     text.className = 'highlight-text';
     text.textContent = h.text;
+    content.appendChild(text);
+
+    // Add fallacy analysis if available
+    if (h.analysis) {
+      const analysis = h.analysis;
+      const fallacyBadge = document.createElement('div');
+      fallacyBadge.className = 'fallacy-badge';
+      fallacyBadge.style.marginTop = '4px';
+      fallacyBadge.style.fontSize = '11px';
+      fallacyBadge.style.color = '#888';
+      
+      const fallacyType = analysis.fallacy.replace(/_/g, ' ').toUpperCase();
+      const confidence = (analysis.confidence * 100).toFixed(0);
+      
+      fallacyBadge.innerHTML = `
+        <strong>${fallacyType}</strong> 
+        ${analysis.confidence > 0.5 ? `<span style="color: #ff9142;">${confidence}%</span>` : ''}
+      `;
+      content.appendChild(fallacyBadge);
+    }
 
     const remove = document.createElement('span');
     remove.className = 'highlight-remove';
@@ -124,7 +148,7 @@ function renderHighlights(highlights, pageKey) {
     });
 
     item.appendChild(bar);
-    item.appendChild(text);
+    item.appendChild(content);
     item.appendChild(remove);
     list.appendChild(item);
   });

@@ -1,11 +1,15 @@
 import pickle
+import os
 from scipy.sparse import hstack, csr_matrix
 from features import normalize_text, add_manual_features
 
-stage1_model = pickle.load(open("stage1_model.pkl", "rb"))
-stage1_vectorizer = pickle.load(open("stage1_vectorizer.pkl", "rb"))
-stage2_model = pickle.load(open("model.pkl", "rb"))
-stage2_vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
+# Get the directory where this script is located
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+stage1_model = pickle.load(open(os.path.join(SCRIPT_DIR, "stage1_model.pkl"), "rb"))
+stage1_vectorizer = pickle.load(open(os.path.join(SCRIPT_DIR, "stage1_vectorizer.pkl"), "rb"))
+stage2_model = pickle.load(open(os.path.join(SCRIPT_DIR, "model.pkl"), "rb"))
+stage2_vectorizer = pickle.load(open(os.path.join(SCRIPT_DIR, "vectorizer.pkl"), "rb"))
 
 def detect_fallacy(text):
     text_norm = normalize_text(text)
